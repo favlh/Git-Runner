@@ -1,12 +1,12 @@
-# Tutorial: Setup Self-Hosted Runner untuk GitHub Actions
+# 🚀 **Tutorial: Setup Self-Hosted Runner untuk GitHub Actions**
 
-## Prasyarat
+## 📝 **Prasyarat**
 1. VPS atau server dengan akses SSH.
 2. Akun GitHub dengan repository yang akan digunakan.
 
 ---
 
-## Langkah 1: Persiapan di GitHub
+## 🏁 **Langkah 1: Persiapan di GitHub**
 
 1. **Masuk ke GitHub**
    - Masuk ke akun GitHub kamu.
@@ -23,30 +23,28 @@
 
 ---
 
-## Langkah 2: Setup Self-Hosted Runner di Server
+## 🖥️ **Langkah 2: Setup Self-Hosted Runner di Server**
 
 1. **Update Sistem**
    Sebelum mulai, pastikan sistem kamu up-to-date dengan menjalankan perintah berikut:
-   ```bash dan tools yang dibutuhkan
+   ```bash
    sudo apt update && sudo apt upgrade -y && sudo apt install curl tar -y
 
-## Langkah 3: Unduh Runner (Sesuai yang ada di repository anda masing-masing)
+## ⬇️ Langkah 3: Unduh Runner
    CONTOH: (Pakai sudo jika permission denied)
    
    mkdir actions-runner && cd actions-runner
    curl -o actions-runner-linux-x64-2.310.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.310.0/actions-runner-linux-x64-2.310.0.tar.gz
    tar xzf ./actions-runner-linux-x64-2.310.0.tar.gz
 
-## Langkah 4: Daftarkan Runner
+## 🔑 Langkah 4: Daftarkan Runner
     Kembali ke halaman GitHub dan salin perintah untuk mendaftarkan runner kamu. 
     Biasanya perintahnya seperti ini: ./config.sh --url https://github.com/username/repo --token YOUR_TOKEN
 
-## Langkah 5: Jalankan Runner
+## ▶️ Langkah 5: Jalankan Runner
    ./run.sh (jika butuh akses root bisa pakai sudo)
 
    Atau bisa pakai files (svc.sh) :
    sudo ./svc.sh install && sudo ./svc.sh start && sudo ./svc.sh status
 
-## Langkah 6: Buat file workflows and DONE ..
-
-
+## 🏁 Langkah 6: Buat Workflow dan Selesai..
