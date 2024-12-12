@@ -44,4 +44,6 @@
 ## Langkah 5: Jalankan Runner
    ./run.sh (jika butuh akses root bisa pakai sudo)
 
+## Langkah 6: Buat file workflows and DONE ..
+
 
