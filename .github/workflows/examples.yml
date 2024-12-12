@@ -2,7 +2,7 @@ name: Update, Upgrade, and Clean System
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Mulai setiap 5 menit
+  - cron: '0 */6 * * *'
 
 jobs:
   update-upgrade-clean:
