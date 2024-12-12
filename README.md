@@ -3,7 +3,6 @@
 ## Prasyarat
 1. VPS atau server dengan akses SSH.
 2. Akun GitHub dengan repository yang akan digunakan.
-3. Pengetahuan dasar tentang Linux dan terminal.
 
 ---
 
