@@ -44,7 +44,7 @@
 ## Langkah 5: Jalankan Runner
    ./run.sh (jika butuh akses root bisa pakai sudo)
 
-   Atau bisa pakai files svc.sh
+   Atau bisa pakai files (svc.sh) :
    sudo ./svc.sh install && sudo ./svc.sh start && sudo ./svc.sh status
 
 ## Langkah 6: Buat file workflows and DONE ..
