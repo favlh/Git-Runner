@@ -1,0 +1,22 @@
+name: Update, Upgrade, and Clean System
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'  # Start setiap 12 jam
+
+jobs:
+  update-upgrade-clean:
+    runs-on: self-hosted  # Menjalankan di self-hosted runner
+    
+    steps:
+    - name: Update and Upgrade System Packages
+      run: |
+        sudo apt update -y && sudo apt upgrade -y  # Update dan upgrade semua paket
+
+    - name: Clean up package cache
+      run: |
+        sudo apt clean  # Menghapus cache paket untuk membebaskan ruang
+
+    - name: Verify update and clean
+      run: |
+        echo "System packages have been updated and cache has been cleaned."
