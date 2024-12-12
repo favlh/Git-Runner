@@ -2,7 +2,7 @@
 
 ## 📝 **Prasyarat**
 1. VPS atau server dengan akses SSH.
-2. Akun GitHub dengan repository yang akan digunakan.
+2. Repository yang sudah dibuat dan akan digunakan.
 
 ---
 
