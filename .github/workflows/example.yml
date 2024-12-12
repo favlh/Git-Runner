@@ -9,14 +9,14 @@ jobs:
     runs-on: self-hosted  
     
     steps:
-    - name: Update and Upgrade System Packages
+    - name: Update the system packages
       run: |
-        sudo apt update
+        sudo nala update
         sudo echo "System packages have been updated."
 
-    - name: Clean up package cache
+    - name: Clean up packages cache
       run: |
-        sudo apt clean && sudo apt autoclean
+        sudo nala clean
         sudo echo "Package cache has been cleaned."
 
     - name: Verify update and clean
