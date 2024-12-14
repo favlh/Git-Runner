@@ -44,9 +44,9 @@
     Biasanya perintahnya seperti ini: ./config.sh --url https://github.com/username/repo --token YOUR_TOKEN
 
 ## ▶️ Langkah 5: Jalankan Runner
-   ./run.sh (jika butuh akses root bisa pakai sudo)
+   ./run.sh (ini langsung berjalan di interface, jika di ctrl + c maka ia akan berhenti runner nya)
 
-   Atau bisa pakai files (svc.sh) :
+   disarankan menggunakan files svc.sh jika anda ingin service nya berjalan di background dan selalu hidup service runnernya :
    sudo ./svc.sh install && sudo ./svc.sh start && sudo ./svc.sh status
 
 ## 🏁 Langkah 6: Buat Workflow dan Selesai..
