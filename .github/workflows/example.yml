@@ -11,12 +11,13 @@ jobs:
     steps:
     - name: Update the system packages
       run: |
-        sudo nala update
+        sudo apt-get update
         sudo echo "System packages have been updated."
 
     - name: Clean up packages cache
       run: |
-        sudo nala clean
+        sudo apt-get clean
+        sudo apt-get autoclean
         sudo echo "Package cache has been cleaned."
 
     - name: Verify update and clean
