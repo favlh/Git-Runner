@@ -47,6 +47,7 @@
    ./run.sh (ini langsung berjalan di interface, jika di ctrl + c maka ia akan berhenti runner nya)
 
    disarankan menggunakan files svc.sh jika anda ingin service nya berjalan di background dan selalu hidup service runnernya :
+
    sudo ./svc.sh install && sudo ./svc.sh start && sudo ./svc.sh status
 
 ## 🏁 Langkah 6: Buat Workflow dan Selesai..
