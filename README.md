@@ -26,7 +26,7 @@
 ## 🖥️ **Langkah 2: Setup Self-Hosted Runner di Server**
 
 1. **Update Sistem**
-   Sebelum mulai, pastikan sistem kamu up-to-date dengan menjalankan perintah berikut:
+   Sebelum mulai, pastikan sistem kamu up-to-date dan install tools yang dibutuhkan dengan menjalankan perintah berikut:
    ```bash
    sudo apt update && sudo apt upgrade -y && sudo apt install curl tar -y
 
