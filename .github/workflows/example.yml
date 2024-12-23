@@ -1,25 +1,77 @@
-name: Update, Upgrade, and Clean System
+name: Update and Clean Workflows
 
 on:
   schedule:
-  - cron: '0 */6 * * *'
+    - cron: "0 */6 * * *"
 
 jobs:
   update-upgrade-clean:
-    runs-on: self-hosted  
-    
+    runs-on: self-hosted
+
     steps:
-    - name: Update the system packages
-      run: |
-        sudo apt-get update
-        sudo echo "System packages have been updated."
+      - name: Detect Linux Distribution
+        id: detect-distro
+        run: |
+          if [ -f /etc/os-release ]; then
+            . /etc/os-release
+            echo "::set-output name=distro::$ID"
+          else
+            echo "::set-output name=distro::unknown"
+          fi
 
-    - name: Clean up packages cache
-      run: |
-        sudo apt-get clean
-        sudo apt-get autoclean
-        sudo echo "Package cache has been cleaned."
+      - name: Update System Packages (Debian/Ubuntu)
+        if: steps.detect-distro.outputs.distro == 'ubuntu' || steps.detect-distro.outputs.distro == 'debian'
+        run: |
+          sudo apt-get update
+          echo "Debian/Ubuntu packages have been updated"
 
-    - name: Verify update and clean
-      run: |
-        sudo echo "System packages have been updated and cache has been cleaned."
+      - name: Update System Packages (RHEL/CentOS/Fedora)
+        if: steps.detect-distro.outputs.distro == 'rhel' || steps.detect-distro.outputs.distro == 'centos' || steps.detect-distro.outputs.distro == 'fedora'
+        run: |
+          sudo dnf update -y
+          echo "RHEL/CentOS/Fedora packages have been updated"
+
+      - name: Update System Packages (openSUSE)
+        if: steps.detect-distro.outputs.distro == 'opensuse-leap' || steps.detect-distro.outputs.distro == 'opensuse-tumbleweed'
+        run: |
+          sudo zypper refresh
+          echo "openSUSE packages have been updated"
+
+      - name: Update System Packages (Arch Linux)
+        if: steps.detect-distro.outputs.distro == 'arch'
+        run: |
+          sudo pacman -Sy --noconfirm
+          echo "Arch Linux packages have been updated"
+
+      - name: Clean Package Cache (Debian/Ubuntu)
+        if: steps.detect-distro.outputs.distro == 'ubuntu' || steps.detect-distro.outputs.distro == 'debian'
+        run: |
+          sudo apt-get clean
+          sudo apt-get autoclean
+          sudo apt-get autoremove -y
+          echo "Debian/Ubuntu package cache has been cleaned"
+
+      - name: Clean Package Cache (RHEL/CentOS/Fedora)
+        if: steps.detect-distro.outputs.distro == 'rhel' || steps.detect-distro.outputs.distro == 'centos' || steps.detect-distro.outputs.distro == 'fedora'
+        run: |
+          sudo dnf clean all
+          sudo dnf autoremove -y
+          echo "RHEL/CentOS/Fedora package cache has been cleaned"
+
+      - name: Clean Package Cache (openSUSE)
+        if: steps.detect-distro.outputs.distro == 'opensuse-leap' || steps.detect-distro.outputs.distro == 'opensuse-tumbleweed'
+        run: |
+          sudo zypper clean
+          sudo zypper cc
+          echo "openSUSE package cache has been cleaned"
+
+      - name: Clean Package Cache (Arch Linux)
+        if: steps.detect-distro.outputs.distro == 'arch'
+        run: |
+          sudo pacman -Sc --noconfirm
+          sudo paccache -r
+          echo "Arch Linux package cache has been cleaned"
+
+      - name: Verify Update and Clean
+        run: |
+          echo "System packages have been updated and cache has been cleaned for $(cat /etc/os-release | grep PRETTY_NAME | cut -d= -f2)"
