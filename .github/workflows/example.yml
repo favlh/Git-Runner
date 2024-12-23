@@ -43,6 +43,13 @@ jobs:
           sudo pacman -Sy --noconfirm
           echo "Arch Linux packages have been updated"
 
+      - name: Update System Packages (Gentoo)
+        if: steps.detect-distro.outputs.distro == 'gentoo'
+        run: |
+          sudo emerge --sync
+          sudo emerge -uDN @world
+          echo "Gentoo packages have been updated"
+
       - name: Clean Package Cache (Debian/Ubuntu)
         if: steps.detect-distro.outputs.distro == 'ubuntu' || steps.detect-distro.outputs.distro == 'debian'
         run: |
@@ -71,6 +78,13 @@ jobs:
           sudo pacman -Sc --noconfirm
           sudo paccache -r
           echo "Arch Linux package cache has been cleaned"
+
+      - name: Clean Package Cache (Gentoo)
+        if: steps.detect-distro.outputs.distro == 'gentoo'
+        run: |
+          sudo eclean-dist
+          sudo eclean-pkg
+          echo "Gentoo package cache has been cleaned"
 
       - name: Verify Update and Clean
         run: |
